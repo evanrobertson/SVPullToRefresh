@@ -287,17 +287,24 @@ static char UIScrollViewPullToRefreshView;
         UIFont *subtitleFont = self.subtitleLabel.font;
         UIFont *titleFont = self.titleLabel.font;
         
-        NSAttributedString *titleAttributedText = [[NSAttributedString alloc] initWithString:titleLabelText attributes:@{NSFontAttributeName: titleFont}];
-        CGRect titleRect = [titleAttributedText boundingRectWithSize:(CGSize){labelMaxWidth, CGFLOAT_MAX}
-                                                             options:NSStringDrawingUsesLineFragmentOrigin
-                                                             context:nil];
-        CGSize titleSize = titleRect.size;
+        CGSize titleSize = CGSizeZero;
+        CGSize subtitleSize = CGSizeZero;
         
-        NSAttributedString *subTitleAttributedText = [[NSAttributedString alloc] initWithString:subTitleLabelText attributes:@{NSFontAttributeName : subtitleFont}];
-        CGRect subtitleRect = [subTitleAttributedText boundingRectWithSize:(CGSize){labelMaxWidth, CGFLOAT_MAX}
-                                                                   options:NSStringDrawingUsesLineFragmentOrigin
-                                                                   context:nil];
-        CGSize subtitleSize = subtitleRect.size;
+        if (titleLabelText) {
+            NSAttributedString *titleAttributedText = [[NSAttributedString alloc] initWithString:titleLabelText attributes:@{NSFontAttributeName: titleFont}];
+            CGRect titleRect = [titleAttributedText boundingRectWithSize:(CGSize){labelMaxWidth, CGFLOAT_MAX}
+                                                                 options:NSStringDrawingUsesLineFragmentOrigin
+                                                                 context:nil];
+            titleSize = titleRect.size;
+        }
+        
+        if (subTitleLabelText) {
+            NSAttributedString *subTitleAttributedText = [[NSAttributedString alloc] initWithString:subTitleLabelText attributes:@{NSFontAttributeName : subtitleFont}];
+            CGRect subtitleRect = [subTitleAttributedText boundingRectWithSize:(CGSize){labelMaxWidth, CGFLOAT_MAX}
+                                                                       options:NSStringDrawingUsesLineFragmentOrigin
+                                                                       context:nil];
+            subtitleSize = subtitleRect.size;
+        }
         
         CGFloat maxLabelWidth = MAX(titleSize.width,subtitleSize.width);
         
