@@ -68,7 +68,6 @@ static char UIScrollViewPullToRefreshView;
 - (void)addPullToRefreshWithActionHandler:(void (^)(void))actionHandler position:(SVPullToRefreshPosition)position {
     if (self.pullToRefreshView) {
         [self.pullToRefreshView removeFromSuperview];
-        self.pullToRefreshView.pullToRefreshActionHandler = nil;
         self.pullToRefreshView = nil;
     }
     

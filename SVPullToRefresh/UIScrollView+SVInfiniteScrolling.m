@@ -55,7 +55,6 @@ UIEdgeInsets scrollViewOriginalContentInsets;
     if (self.infiniteScrollingView) {
         self.contentInset = UIEdgeInsetsMake(self.contentInset.top, self.contentInset.left, self.infiniteScrollingView.originalBottomInset, self.contentInset.right);
         [self.infiniteScrollingView removeFromSuperview];
-        self.infiniteScrollingView.infiniteScrollingHandler = nil;
         self.infiniteScrollingView = nil;
     }
     
